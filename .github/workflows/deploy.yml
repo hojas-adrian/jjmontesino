@@ -41,6 +41,8 @@ jobs:
           cache: "npm"
       - name: Instalar dependencias
         run: npm ci
+      - name: Instalar dependencias
+        run: npm install
       - name: Construir
         run: npm run build
       - name: Configurar Pages
