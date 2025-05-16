@@ -24,30 +24,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar cache de pnpm
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: "pnpm" # Cache para pnpm
-
+      # 1. Instalar pnpm PRIMERO (antes de cualquier uso)
       - name: Instalar pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8 # Versión de pnpm
+          version: 8
 
+      # 2. Configurar Node.js (opcional, pero útil para versiones específicas)
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: "pnpm" # Habilita cache para pnpm
+
+      # 3. Instalar dependencias con pnpm
       - name: Instalar dependencias
-        run: pnpm install --frozen-lockfile # Instala dependencias con pnpm
+        run: pnpm install --frozen-lockfile
 
+      # 4. Construir con pnpm
       - name: Construir
-        run: pnpm run build # ¡Importante: Usa pnpm aquí!
+        run: pnpm run build
 
+      # Pasos de despliegue (sin cambios)
       - name: Configurar Pages
         uses: actions/configure-pages@v5
 
       - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist" # Asegúrate de que esta ruta sea correcta
+          path: "./dist"
 
       - name: Desplegar a GitHub Pages
         id: deployment
