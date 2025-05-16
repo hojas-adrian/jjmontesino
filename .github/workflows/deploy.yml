@@ -34,15 +34,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Configurar Node
+
+      - name: Configurar cache de pnpm
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: "npm"
+          cache: "pnpm" # Habilita caching automático para pnpm
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Instalar dependencias
-        run: npm ci
-      - name: Instalar dependencias
-        run: npm install
+        run: pnpm install --frozen-lockfile
+
       - name: Construir
         run: npm run build
       - name: Configurar Pages
