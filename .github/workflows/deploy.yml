@@ -39,7 +39,7 @@ jobs:
 
       # 3. Instalar dependencias con pnpm
       - name: Instalar dependencias
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       # 4. Construir con pnpm
       - name: Construir
