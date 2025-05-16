@@ -1,56 +1,44 @@
-# Importado en static-deploy.md
-# Este archivo se extrae como un archivo separado para que Renovate pueda actualizar las versiones de las acciones
-#
-#region contenido
-# Flujo de trabajo simple para desplegar contenido estático en GitHub Pages
-name: Desplegar contenido estático en Pages
+name: Deploy to GitHub Pages
 
 on:
-  # Se ejecuta cuando se hace push a la rama principal
   push:
-    branches: ["main"]
-
-  # Permite ejecutar este flujo de trabajo manualmente desde la pestaña de Acciones
-  workflow_dispatch:
-
-# Establece los permisos del GITHUB_TOKEN para permitir el despliegue en GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Permite un solo despliegue concurrente
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches: [main]
 
 jobs:
-  # Trabajo único de despliegue ya que solo estamos desplegando
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Configurar Node
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-          cache: "npm"
-      - name: Instalar dependencias
-        run: npm ci
-      - name: Construir
-        run: npm run build
-      - name: Configurar Pages
-        uses: actions/configure-pages@v5
-      - name: Subir artefacto
-        uses: actions/upload-pages-artifact@v3
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
-          # Subir la carpeta dist
-          path: "./dist"
-      - name: Desplegar a GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-#endregion contenido
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
