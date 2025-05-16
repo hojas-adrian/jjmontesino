@@ -1,0 +1,253 @@
+/* CSS Reset Moderno Mejorado */
+:root {
+  --line-height: 1.5;
+  --max-text-width: 65ch;
+  --link-underline-offset: 0.2em;
+}
+
+/*
+    1. Box-sizing intuitivo + Reset básico
+  */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+    2. Reset de márgenes y elementos estructurales
+  */
+body,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+blockquote,
+figure,
+figcaption,
+fieldset,
+table,
+caption,
+hr {
+  margin: 0;
+}
+
+hr {
+  border: none;
+}
+
+ul,
+ol,
+td,
+fieldset {
+  padding: 0;
+}
+
+/*
+    3. Base tipográfica y accesibilidad
+  */
+body {
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+    4. Manejo de texto y encabezados
+  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: pretty; /* Fallback */
+  text-wrap: balance;
+}
+
+@supports (text-wrap: balance) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+}
+
+p,
+li,
+figcaption,
+blockquote {
+  max-width: var(--max-text-width);
+  overflow-wrap: break-word;
+}
+
+/*
+    5. Elementos multimedia y embebidos
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/*
+    6. Normalización de fuentes y herencia
+  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+address,
+small,
+b,
+strong,
+i,
+em,
+th,
+pre,
+code,
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  font-weight: inherit;
+}
+
+mark {
+  background-color: inherit;
+  color: inherit;
+}
+/*
+    7. Enlaces accesibles
+  */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+    8. Formularios mejorados
+  */
+fieldset {
+  border: none;
+}
+
+input,
+button,
+textarea,
+select,
+progress,
+meter {
+  appearance: none;
+}
+
+input,
+button,
+textarea,
+select {
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  font: inherit;
+}
+
+input::placeholder {
+  color: inherit;
+}
+
+input:focus-visible,
+button:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/*
+    9. Tablas y datos
+  */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+}
+
+/*
+    10. Elementos interactivos y JS frameworks
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/*
+    11. Animaciones y preferencias de usuario
+  */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+    12. Reset de listas y elementos semánticos
+  */
+ul,
+ol {
+  list-style: none;
+}
+
+blockquote {
+  quotes: none;
+}
+
+/*
+    13. Manejo de código y preformateado
+  */
+pre,
+code {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+/*
+    14. Elementos ocultos accesibles
+  */
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
