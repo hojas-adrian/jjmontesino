@@ -22,14 +22,88 @@ h2 {
 }
 
 .container {
-  max-width: 250px;
-  border-radius: 70px;
-  overflow: hidden;
+  /* width: 250px;
+  height: 250px; */
+  /* border-radius: 70px; */
+  /* overflow: hidden; */
   margin: 24px auto 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.container {
+  min-width: 45px;
+  min-height: 45px;
+  animation: identifier auto ease-out;
+  animation-fill-mode: both;
+  animation-timeline: scroll();
+  animation-range: 0 260px;
+}
+
+.container img {
+  min-width: 45px;
+  min-height: 45px;
+
   filter: drop-shadow(0px 151px 60px rgba(0, 0, 0, 1%))
     drop-shadow(0px 85px 51px rgba(0, 0, 0, 5%))
     drop-shadow(0px 38px 38px rgba(0, 0, 0, 9%))
     drop-shadow(0px 9px 21px rgba(0, 0, 0, 10%));
+
+  animation: identifier1 auto ease-out;
+  animation-fill-mode: both;
+  animation-timeline: scroll();
+  animation-range: 0 260px;
+}
+
+.container img {
+  translate: 0;
+}
+
+@keyframes identifier {
+  0% {
+    width: 250px;
+    height: 250px;
+  }
+
+  100% {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@keyframes identifier1 {
+  0% {
+    width: 250px;
+    height: 250px;
+  }
+
+  99.9% {
+    position: static;
+  }
+  100% {
+    position: fixed;
+    width: 0px;
+    height: 0;
+    top: 10px;
+  }
+}
+
+.logo {
+  animation: listmaxwidth auto ease-out;
+  animation-fill-mode: both;
+  animation-timeline: scroll();
+  animation-range: 200px 506px;
+}
+
+@keyframes listmaxwidth {
+  0% {
+    max-width: 0px;
+  }
+  100% {
+    max-width: calc(auto);
+  }
 }
 
 nav {
@@ -46,9 +120,9 @@ nav {
   font-size: 25px;
 }
 
-ul img {
+nav ul img {
   width: 45px;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .nav li {

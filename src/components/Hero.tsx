@@ -10,7 +10,7 @@ function Hero() {
             <li>
               <a href="#">work</a>
             </li>
-            <li>
+            <li className="logo">
               <a href="#">
                 <img src="./eye.png" alt="" />
               </a>
