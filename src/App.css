@@ -39,7 +39,7 @@ h2 {
   animation: identifier auto ease-out;
   animation-fill-mode: both;
   animation-timeline: scroll();
-  animation-range: 0 260px;
+  animation-range: 0 285px;
 }
 
 .container img {
@@ -54,7 +54,7 @@ h2 {
   animation: identifier1 auto ease-out;
   animation-fill-mode: both;
   animation-timeline: scroll();
-  animation-range: 0 260px;
+  animation-range: 0 285px;
 }
 
 .container img {
@@ -84,6 +84,7 @@ h2 {
   }
   100% {
     position: fixed;
+    z-index: 999;
     width: 0px;
     height: 0;
     top: 10px;
@@ -137,7 +138,7 @@ nav ul img {
 }
 
 .titlegrapper {
-  padding-top: 50px;
+  padding-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -422,4 +423,91 @@ details[open] p {
 }
 .imgcard:nth-child(2) {
   rotate: -5deg;
+}
+
+.experiense li {
+  text-transform: uppercase;
+  font-family: "Bowlby One SC";
+  text-align: left;
+  font-size: 60px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.experiense li:hover {
+  color: #d2d2d2;
+}
+
+.experiense {
+  /* display: flex; */
+  align-items: flex-start;
+  flex-direction: column;
+  /* padding-inline: 100px; */
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-block: 100px;
+  gap: 0px;
+}
+
+.experiense ul {
+  /* flex-direction: column; */
+  display: flex;
+
+  gap: 30px;
+}
+
+.experiense div {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.experiense div ul {
+  padding: 7.5px;
+  animation: marquesina 40s linear infinite;
+}
+
+@keyframes marquesina {
+  0% {
+    translate: 0;
+  }
+  100% {
+    translate: -100%;
+  }
+}
+
+.experiense div:nth-child(2) ul {
+  animation-direction: reverse;
+}
+
+.experiense div:nth-child(3) ul {
+  animation-delay: -20s;
+}
+
+.experiense:hover ul {
+  animation-play-state: paused;
+}
+
+.experiense div:hover {
+  z-index: 9;
+}
+
+.experiense div ul li {
+  position: relative;
+}
+
+.experiense div ul li:hover img {
+  display: block;
+}
+
+.experiense div ul img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 200px;
+  width: 200px;
+  translate: -50% -50%;
+  border-radius: 15px;
+  rotate: 5deg;
+  display: none;
 }
